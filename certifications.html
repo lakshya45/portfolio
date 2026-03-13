@@ -15,14 +15,14 @@
 
 <nav id="navbar">
   <div class="nav-inner">
-    <a class="logo" href="index.html" class="page-link">LC<span class="dot">.</span></a>
+    <a class="logo page-link" href="index.html">LC<span class="dot">.</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html"      class="page-link" data-nav="home">Home</a></li>
-      <li><a href="about.html"      class="page-link" data-nav="about">About</a></li>
-      <li><a href="experience.html" class="page-link" data-nav="experience">Experience</a></li>
-      <li><a href="techstack.html"  class="page-link" data-nav="techstack">Tech Stack</a></li>
+      <li><a href="index.html"          class="page-link" data-nav="home">Home</a></li>
+      <li><a href="about.html"          class="page-link" data-nav="about">About</a></li>
+      <li><a href="experience.html"     class="page-link" data-nav="experience">Experience</a></li>
+      <li><a href="techstack.html"      class="page-link" data-nav="techstack">Tech Stack</a></li>
       <li><a href="certifications.html" class="page-link" data-nav="certifications">Certs</a></li>
-      <li><a href="contact.html"    class="page-link" data-nav="contact">Contact</a></li>
+      <li><a href="contact.html"        class="page-link" data-nav="contact">Contact</a></li>
       <li><a href="https://www.linkedin.com/in/lakshya-chhajed" target="_blank" class="nav-linkedin">LinkedIn ↗</a></li>
     </ul>
     <div class="nav-actions">
@@ -47,82 +47,117 @@
   </div>
 </header>
 
+<!-- ── CERTIFICATIONS ─────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
     <h2 class="section-title gsap-title"><span class="section-num">01.</span> Certifications</h2>
-    <div class="cert-alt-list">
 
-      <!-- AWS DevOps Pro — visual LEFT, content RIGHT -->
-      <div class="cert-alt-item glass-card gsap-cert">
-        <div class="cert-alt-visual">
-          <div class="cert-badge-icon aws-glow cert-badge-icon--lg">
-            <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-family:monospace;font-weight:800;color:#FF9900;font-size:1.1rem\'>AWS</span>'">
+    <div class="cspot-list">
+
+      <!-- ① AWS DevOps Pro — logo LEFT ───────────────────────── -->
+      <div class="cspot-card glass-card gsap-cert" style="--brand:#FF9900;--brand-rgb:255,153,0">
+        <div class="cspot-logo-panel">
+          <div class="cspot-ring">
+            <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS"
+              onerror="this.style.display='none';this.parentElement.innerHTML+='<span class=\'cspot-abbr\'>AWS</span>'">
           </div>
-          <span class="cert-level-pill pro">PROFESSIONAL</span>
-          <span class="cert-alt-id">DOP-C02</span>
+          <span class="cspot-pill cspot-pill--pro">PROFESSIONAL</span>
+          <span class="cspot-code">DOP-C02</span>
         </div>
-        <div class="cert-alt-content">
-          <h3 class="cert-title">AWS Certified DevOps Engineer</h3>
-          <p class="cert-org-line">
-            <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="" width="14" height="14" onerror="this.remove()">
-            Amazon Web Services
-          </p>
-          <p class="cert-meaning">Validates expertise in provisioning, operating & managing distributed application systems. Covers continuous delivery, monitoring, policies, security automation & high availability on AWS.</p>
-          <div class="cert-skills">
-            <span>CI/CD Pipelines</span><span>CloudFormation</span><span>Monitoring</span><span>Security Automation</span><span>High Availability</span>
+
+        <div class="cspot-divider"></div>
+
+        <div class="cspot-body">
+          <div>
+            <h3 class="cspot-title">AWS Certified DevOps Engineer</h3>
+            <p class="cspot-issuer">
+              <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="" width="13" height="13" onerror="this.remove()">
+              Amazon Web Services
+            </p>
           </div>
-          <div class="cert-footer">
-            <span class="cert-verified">✓ Active</span>
+          <p class="cspot-desc">Validates expertise in provisioning, operating &amp; managing distributed application systems. Covers continuous delivery, monitoring, policies, security automation &amp; high availability on AWS.</p>
+          <div class="cspot-skills">
+            <span>CI/CD Pipelines</span>
+            <span>CloudFormation</span>
+            <span>Monitoring</span>
+            <span>Security Automation</span>
+            <span>High Availability</span>
+          </div>
+          <div class="cspot-footer">
+            <span class="cspot-status">✓ Active &amp; Verified</span>
+            <span class="cspot-year">2024</span>
           </div>
         </div>
       </div>
 
-      <!-- AWS SAA — content LEFT, visual RIGHT (reversed via CSS nth-child even) -->
-      <div class="cert-alt-item glass-card gsap-cert">
-        <div class="cert-alt-visual">
-          <div class="cert-badge-icon aws-glow cert-badge-icon--lg">
-            <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-family:monospace;font-weight:800;color:#FF9900;font-size:1.1rem\'>AWS</span>'">
+      <!-- ② AWS SAA — logo RIGHT (even = reversed) ────────────── -->
+      <div class="cspot-card glass-card gsap-cert" style="--brand:#06b6d4;--brand-rgb:6,182,212">
+        <div class="cspot-logo-panel">
+          <div class="cspot-ring">
+            <img src="https://cdn.simpleicons.org/amazonaws/06b6d4" alt="AWS"
+              onerror="this.style.display='none';this.parentElement.innerHTML+='<span class=\'cspot-abbr\'>AWS</span>'">
           </div>
-          <span class="cert-level-pill assoc">ASSOCIATE</span>
-          <span class="cert-alt-id">SAA-C03</span>
+          <span class="cspot-pill cspot-pill--assoc">ASSOCIATE</span>
+          <span class="cspot-code">SAA-C03</span>
         </div>
-        <div class="cert-alt-content">
-          <h3 class="cert-title">AWS Certified Solutions Architect</h3>
-          <p class="cert-org-line">
-            <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="" width="14" height="14" onerror="this.remove()">
-            Amazon Web Services
-          </p>
-          <p class="cert-meaning">Demonstrates ability to design and deploy scalable, highly available and fault-tolerant systems on AWS. Covers compute, storage, databases, networking and well-architected framework principles.</p>
-          <div class="cert-skills">
-            <span>Multi-tier Arch</span><span>VPC Design</span><span>Auto Scaling</span><span>S3 & RDS</span><span>Cost Optimization</span>
+
+        <div class="cspot-divider"></div>
+
+        <div class="cspot-body">
+          <div>
+            <h3 class="cspot-title">AWS Certified Solutions Architect</h3>
+            <p class="cspot-issuer">
+              <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="" width="13" height="13" onerror="this.remove()">
+              Amazon Web Services
+            </p>
           </div>
-          <div class="cert-footer">
-            <span class="cert-verified">✓ Active</span>
+          <p class="cspot-desc">Demonstrates ability to design and deploy scalable, highly available and fault-tolerant systems on AWS. Covers compute, storage, databases, networking and well-architected framework principles.</p>
+          <div class="cspot-skills">
+            <span>Multi-tier Arch</span>
+            <span>VPC Design</span>
+            <span>Auto Scaling</span>
+            <span>S3 &amp; RDS</span>
+            <span>Cost Optimization</span>
+          </div>
+          <div class="cspot-footer">
+            <span class="cspot-status">✓ Active &amp; Verified</span>
+            <span class="cspot-year">2023</span>
           </div>
         </div>
       </div>
 
-      <!-- Terraform — visual LEFT, content RIGHT -->
-      <div class="cert-alt-item glass-card gsap-cert">
-        <div class="cert-alt-visual">
-          <div class="cert-badge-icon tf-glow cert-badge-icon--lg">
-            <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-family:monospace;font-weight:800;color:#7B42BC;font-size:1.1rem\'>TF</span>'">
+      <!-- ③ Terraform — logo LEFT ─────────────────────────────── -->
+      <div class="cspot-card glass-card gsap-cert" style="--brand:#7B42BC;--brand-rgb:123,66,188">
+        <div class="cspot-logo-panel">
+          <div class="cspot-ring">
+            <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform"
+              onerror="this.style.display='none';this.parentElement.innerHTML+='<span class=\'cspot-abbr\'>TF</span>'">
           </div>
-          <span class="cert-level-pill tf">ASSOCIATE</span>
-          <span class="cert-alt-id">003</span>
+          <span class="cspot-pill cspot-pill--tf">ASSOCIATE</span>
+          <span class="cspot-code">003</span>
         </div>
-        <div class="cert-alt-content">
-          <h3 class="cert-title">HashiCorp Certified: Terraform Associate</h3>
-          <p class="cert-org-line">
-            <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="" width="14" height="14" onerror="this.remove()">
-            HashiCorp
-          </p>
-          <p class="cert-meaning">Validates understanding of infrastructure as code concepts and proficiency with Terraform CLI. Covers state management, modules, workspaces, providers, remote backends and collaboration workflows.</p>
-          <div class="cert-skills">
-            <span>IaC Concepts</span><span>Remote State</span><span>Modules</span><span>Workspaces</span><span>Multi-cloud</span>
+
+        <div class="cspot-divider"></div>
+
+        <div class="cspot-body">
+          <div>
+            <h3 class="cspot-title">HashiCorp Certified: Terraform Associate</h3>
+            <p class="cspot-issuer">
+              <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="" width="13" height="13" onerror="this.remove()">
+              HashiCorp
+            </p>
           </div>
-          <div class="cert-footer">
-            <span class="cert-verified">✓ Active</span>
+          <p class="cspot-desc">Validates understanding of infrastructure as code concepts and proficiency with Terraform CLI. Covers state management, modules, workspaces, providers, remote backends and collaboration workflows.</p>
+          <div class="cspot-skills">
+            <span>IaC Concepts</span>
+            <span>Remote State</span>
+            <span>Modules</span>
+            <span>Workspaces</span>
+            <span>Multi-cloud</span>
+          </div>
+          <div class="cspot-footer">
+            <span class="cspot-status">✓ Active &amp; Verified</span>
+            <span class="cspot-year">2023</span>
           </div>
         </div>
       </div>
@@ -131,19 +166,42 @@
   </div>
 </section>
 
+<!-- ── EDUCATION ─────────────────────────────────────────────── -->
 <section class="section section-alt">
   <div class="container">
     <h2 class="section-title gsap-title"><span class="section-num">02.</span> Education</h2>
     <div class="edu-grid">
-      <div class="edu-card glass-card gsap-up" data-tilt data-tilt-max="6"><div class="edu-icon">🎓</div><div class="edu-info"><h3>Bachelor of Technology — Information Technology</h3><p class="edu-school">Uka Tarsadia University</p><p class="edu-location">Bardoli, India</p><div class="edu-meta"><span class="edu-year">2018 — 2022</span><span class="edu-score">CGPA: <strong>9.04 / 10</strong></span></div></div></div>
-      <div class="edu-card glass-card gsap-up" data-tilt data-tilt-max="6" style="--delay:.15s"><div class="edu-icon">📚</div><div class="edu-info"><h3>Higher Secondary — Science</h3><p class="edu-school">St. Xavier's High School</p><p class="edu-location">Surat, India</p><div class="edu-meta"><span class="edu-year">2016 — 2018</span><span class="edu-score">Score: <strong>84%</strong></span></div></div></div>
+      <div class="edu-card glass-card gsap-up" data-tilt data-tilt-max="6">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-info">
+          <h3>Bachelor of Technology — Information Technology</h3>
+          <p class="edu-school">Uka Tarsadia University</p>
+          <p class="edu-location">Bardoli, India</p>
+          <div class="edu-meta">
+            <span class="edu-year">2018 — 2022</span>
+            <span class="edu-score">CGPA: <strong>9.04 / 10</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="edu-card glass-card gsap-up" data-tilt data-tilt-max="6" style="--delay:.15s">
+        <div class="edu-icon">📚</div>
+        <div class="edu-info">
+          <h3>Higher Secondary — Science</h3>
+          <p class="edu-school">St. Xavier's High School</p>
+          <p class="edu-location">Surat, India</p>
+          <div class="edu-meta">
+            <span class="edu-year">2016 — 2018</span>
+            <span class="edu-score">Score: <strong>84%</strong></span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <p>Designed & Built by <strong>Lakshya Chhajed</strong></p>
+    <p>Designed &amp; Built by <strong>Lakshya Chhajed</strong></p>
     <p class="footer-sub">DevOps Lead Engineer · Surat, India · 2026</p>
   </div>
 </footer>

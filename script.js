@@ -29,60 +29,24 @@ function hexToRgb(hex){
   const overlay=document.getElementById('ptOverlay');
   if(!overlay||typeof gsap==='undefined') return;
 
-  /* Each destination page gets its own animation style */
-  const PAGE_FX={
-    'index.html':          'circle',
-    'about.html':          'fade',
-    'experience.html':     'slide-right',
-    'techstack.html':      'slide-up',
-    'certifications.html': 'wipe',
-    'contact.html':        'diagonal',
-  };
+  const isHome=document.documentElement.dataset.page==='home';
 
-  /* Each page has its own gradient color */
-  const PAGE_COLOR={
-    'index.html':          'linear-gradient(135deg,#06b6d4,#8b5cf6)',
-    'about.html':          'linear-gradient(135deg,#8b5cf6,#10b981)',
-    'experience.html':     'linear-gradient(135deg,#06b6d4,#3b82f6)',
-    'techstack.html':      'linear-gradient(135deg,#10b981,#06b6d4)',
-    'certifications.html': 'linear-gradient(135deg,#8b5cf6,#ec4899)',
-    'contact.html':        'linear-gradient(135deg,#f59e0b,#ef4444)',
-  };
-
-  /* ── ENTER: reveal the page based on the fx stored by previous page ── */
-  const enterFx=sessionStorage.getItem('ptFx')||'circle';
-  const enterColor=sessionStorage.getItem('ptColor')||PAGE_COLOR['index.html'];
-  sessionStorage.removeItem('ptFx');
-  sessionStorage.removeItem('ptColor');
-  overlay.style.background=enterColor;
-
-  switch(enterFx){
-    case 'fade':
-      gsap.set(overlay,{opacity:1,clearProps:'clipPath,xPercent,yPercent'});
-      gsap.to(overlay,{opacity:0,duration:.75,ease:'power2.inOut',delay:.05});
-      break;
-    case 'slide-right':
-      gsap.set(overlay,{xPercent:0,clearProps:'clipPath,opacity,yPercent'});
-      gsap.to(overlay,{xPercent:-100,duration:.75,ease:'power4.inOut',delay:.05});
-      break;
-    case 'slide-up':
-      gsap.set(overlay,{yPercent:0,clearProps:'clipPath,opacity,xPercent'});
-      gsap.to(overlay,{yPercent:-100,duration:.75,ease:'power4.inOut',delay:.05});
-      break;
-    case 'wipe':
-      gsap.set(overlay,{clipPath:'inset(0 0% 0 0)',clearProps:'opacity,xPercent,yPercent'});
-      gsap.to(overlay,{clipPath:'inset(0 100% 0 0)',duration:.75,ease:'power4.inOut',delay:.05});
-      break;
-    case 'diagonal':
-      gsap.set(overlay,{clipPath:'polygon(0% 0%,100% 0%,100% 100%,0% 100%)',clearProps:'opacity,xPercent,yPercent'});
-      gsap.to(overlay,{clipPath:'polygon(100% 0%,100% 0%,100% 100%,100% 100%)',duration:.75,ease:'power4.inOut',delay:.05});
-      break;
-    default: /* circle */
-      gsap.set(overlay,{clipPath:'circle(150% at 50% 50%)',clearProps:'opacity,xPercent,yPercent'});
-      gsap.to(overlay,{clipPath:'circle(0% at 50% 50%)',duration:.75,ease:'power4.inOut',delay:.05});
+  /* ── ENTER: reveal current page ── */
+  if(sessionStorage.getItem('ptActive')){
+    sessionStorage.removeItem('ptActive');
+    if(isHome){
+      /* Home: horizontal wipe reveal — overlay sweeps off to the right */
+      gsap.set(overlay,{opacity:1,clipPath:'inset(0 0% 0 0)'});
+      gsap.to(overlay,{clipPath:'inset(0 100% 0 0)',duration:.9,ease:'power4.inOut',delay:.05,
+        onComplete:()=>gsap.set(overlay,{opacity:0,clearProps:'clipPath'})});
+    } else {
+      /* All other pages: frosted-glass fade reveal */
+      gsap.set(overlay,{opacity:1});
+      gsap.to(overlay,{opacity:0,duration:.65,ease:'power2.inOut',delay:.04});
+    }
   }
 
-  /* ── EXIT: animate overlay over the page then navigate ── */
+  /* ── EXIT: cover page, then navigate ── */
   document.addEventListener('click',e=>{
     const link=e.target.closest('a.page-link');
     if(!link) return;
@@ -90,58 +54,51 @@ function hexToRgb(hex){
     if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')) return;
     e.preventDefault();
 
-    const fx=PAGE_FX[href]||'circle';
-    const color=PAGE_COLOR[href]||PAGE_COLOR['index.html'];
-    sessionStorage.setItem('ptFx',fx);
-    sessionStorage.setItem('ptColor',color);
-    overlay.style.background=color;
+    sessionStorage.setItem('ptActive','1');
 
     const rect=link.getBoundingClientRect();
     const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
     const ww=window.innerWidth, wh=window.innerHeight;
 
-    /* Collapse other nav items */
     document.querySelectorAll('.nav-links li').forEach(li=>{
-      if(!li.contains(link)) gsap.to(li,{opacity:0,y:-10,scale:.85,duration:.22,ease:'power2.in'});
+      if(!li.contains(link)) gsap.to(li,{opacity:0,y:-8,scale:.85,duration:.2,ease:'power2.in'});
     });
 
-    /* Label flies from nav item to screen center */
     const lbl=document.createElement('div');
     lbl.className='pt-nav-label';
     lbl.textContent=link.textContent.trim();
     document.body.appendChild(lbl);
     gsap.fromTo(lbl,
       {x:cx,y:cy,scale:.5,opacity:1},
-      {x:ww/2,y:wh/2,scale:3,opacity:0,duration:.65,ease:'power3.inOut',onComplete:()=>lbl.remove()}
+      {x:ww/2,y:wh/2,scale:2.5,opacity:0,duration:.55,ease:'power3.inOut',onComplete:()=>lbl.remove()}
     );
 
-    const done=()=>{window.location.href=href;};
-
-    switch(fx){
-      case 'fade':
-        gsap.set(overlay,{opacity:0,clearProps:'clipPath,xPercent,yPercent'});
-        gsap.to(overlay,{opacity:1,duration:.55,delay:.22,ease:'power2.inOut',onComplete:done});
-        break;
-      case 'slide-right':
-        gsap.set(overlay,{xPercent:100,clearProps:'clipPath,opacity,yPercent'});
-        gsap.to(overlay,{xPercent:0,duration:.55,delay:.22,ease:'power4.inOut',onComplete:done});
-        break;
-      case 'slide-up':
-        gsap.set(overlay,{yPercent:100,clearProps:'clipPath,opacity,xPercent'});
-        gsap.to(overlay,{yPercent:0,duration:.55,delay:.22,ease:'power4.inOut',onComplete:done});
-        break;
-      case 'wipe':
-        gsap.set(overlay,{clipPath:'inset(0 100% 0 0)',clearProps:'opacity,xPercent,yPercent'});
-        gsap.to(overlay,{clipPath:'inset(0 0% 0 0)',duration:.55,delay:.22,ease:'power4.inOut',onComplete:done});
-        break;
-      case 'diagonal':
-        gsap.set(overlay,{clipPath:'polygon(100% 0%,100% 0%,100% 100%,100% 100%)',clearProps:'opacity,xPercent,yPercent'});
-        gsap.to(overlay,{clipPath:'polygon(0% 0%,100% 0%,100% 100%,0% 100%)',duration:.55,delay:.22,ease:'power4.inOut',onComplete:done});
-        break;
-      default: /* circle from click origin */
-        gsap.set(overlay,{clipPath:`circle(0px at ${cx}px ${cy}px)`,clearProps:'opacity,xPercent,yPercent'});
-        gsap.to(overlay,{clipPath:`circle(200vmax at ${cx}px ${cy}px)`,duration:.55,delay:.22,ease:'power4.inOut',onComplete:done});
+    if(isHome){
+      /* Home exit: circle explosion bursts from the clicked nav link */
+      gsap.set(overlay,{opacity:1,clearProps:'clipPath'});
+      gsap.fromTo(overlay,
+        {clipPath:`circle(0px at ${cx}px ${cy}px)`},
+        {clipPath:`circle(200vmax at ${cx}px ${cy}px)`,duration:.6,delay:.12,ease:'power4.inOut',
+          onComplete:()=>{window.location.href=href;}}
+      );
+    } else {
+      /* All other pages: frosted-glass fade exit */
+      gsap.set(overlay,{opacity:0,clearProps:'clipPath'});
+      gsap.to(overlay,{opacity:1,duration:.45,delay:.1,ease:'power2.inOut',
+        onComplete:()=>{window.location.href=href;}
+      });
     }
+  });
+})();
+
+/* ─── CARD SPOTLIGHT (mouse-tracking glow on glass-card) ────── */
+(function(){
+  document.querySelectorAll('.glass-card').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+      card.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+    });
   });
 })();
 
@@ -335,20 +292,16 @@ function startHeroAnim(){
   });
   const certs=document.querySelectorAll('.gsap-cert');
   if(certs.length){
-    /* Alternating layout: odd items slide from left, even from right */
-    const isAlt=certs[0].classList.contains('cert-alt-item');
-    if(isAlt){
-      certs.forEach((el,i)=>{
-        const fromX=i%2===0?-60:60;
-        gsap.set(el,{opacity:0,x:fromX});
-        ScrollTrigger.create({trigger:el,start:'top 88%',onEnter:()=>{
-          gsap.to(el,{opacity:1,x:0,duration:.7,ease:'power3.out'});
-          el.classList.add('animated');
-        }});
-      });
-    } else {
-      ScrollTrigger.create({trigger:certs[0],start:'top 85%',onEnter:()=>{gsap.to(certs,{opacity:1,y:0,duration:.6,stagger:.1,ease:'power3.out'});certs.forEach(e=>e.classList.add('animated'));}});
-    }
+    certs.forEach((el,i)=>{
+      /* cspot-cards alternate: odd slides from left, even from right */
+      const fromX=el.classList.contains('cspot-card')?(i%2===0?-70:70):0;
+      const fromY=fromX===0?40:0;
+      gsap.set(el,{opacity:0,x:fromX,y:fromY});
+      ScrollTrigger.create({trigger:el,start:'top 88%',onEnter:()=>{
+        gsap.to(el,{opacity:1,x:0,y:0,duration:.75,ease:'power3.out',delay:fromX===0?i*.1:0});
+        el.classList.add('animated');
+      }});
+    });
   }
   const logoGrid=document.getElementById('logoGrid');
   if(logoGrid){
@@ -442,6 +395,7 @@ function startHeroAnim(){
     help:cmdHelp,whoami:cmdWhoami,about:cmdAbout,skills:cmdSkills,
     certifications:cmdCerts,certs:cmdCerts,experience:cmdExperience,exp:cmdExperience,
     education:cmdEducation,edu:cmdEducation,contact:cmdContact,
+    resume:cmdResume,cv:cmdResume,download:cmdResume,
     clear:cmdClear,exit:cmdExit,close:cmdExit,banner:cmdBanner,
   };
   const ALL=[...new Set(Object.keys(CMDS))];
@@ -449,7 +403,7 @@ function startHeroAnim(){
 
   function open(){overlay.classList.add('open');input.focus();if(!booted){booted=true;cmdBanner();}}
   function close(){overlay.classList.remove('open');}
-  fab.addEventListener('click',open);
+  /* FAB removed from UI — terminal opened via nav >_ button only */
   const navTermBtn=document.getElementById('navTermBtn');
   if(navTermBtn) navTermBtn.addEventListener('click',open);
   closeBtn.addEventListener('click',close);
@@ -487,9 +441,19 @@ function startHeroAnim(){
   }
   function cmdHelp(){
     line('tl-head','  Available Commands');sep();
-    [['whoami','Quick identity card'],['about','Full professional summary'],['skills','Technical skills'],['certifications','Cloud & IaC certs'],['experience','Work history'],['education','Academic background'],['contact','Email & LinkedIn'],['banner','Show welcome banner'],['clear','Clear terminal'],['exit','Close terminal']]
+    [['whoami','Quick identity card'],['about','Full professional summary'],['skills','Technical skills'],['certifications','Cloud & IaC certs'],['experience','Work history'],['education','Academic background'],['contact','Email & LinkedIn'],['resume','Download resume as PDF'],['banner','Show welcome banner'],['clear','Clear terminal'],['exit','Close terminal']]
       .forEach(([c,d])=>html(`<span class="tl">  <span class="tl-ok">${c.padEnd(18)}</span><span class="tl-dim">${d}</span></span>`));
-    blank();line('tl-dim','  Tab to autocomplete · ↑↓ for history');
+    blank();line('tl-dim','  Tab to autocomplete · ↑↓ for history · aliases: <span class="tl-key">cv</span> · <span class="tl-key">download</span>');
+  }
+  function cmdResume(){
+    line('tl-head','  Resume / CV');sep();blank();
+    line('tl-ok','  Initiating download...');
+    line('tl-dim','  Lakshya Chhajed — DevOps Lead Engineer');blank();
+    const a=document.createElement('a');
+    a.href='resume.pdf'; a.download='Lakshya_Chhajed_Resume.pdf';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    line('tl-val','  ✓ Download started: <span class="tl-key">Lakshya_Chhajed_Resume.pdf</span>');
+    blank();line('tl-dim','  Aliases: <span class="tl-key">cv</span> · <span class="tl-key">download</span>');
   }
   function cmdWhoami(){
     line('tl-head','  Identity Card');sep();
