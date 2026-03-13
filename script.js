@@ -29,17 +29,72 @@ function hexToRgb(hex){
   const overlay=document.getElementById('ptOverlay');
   if(!overlay||typeof gsap==='undefined') return;
 
-  /* Enter: circle shrinks from center revealing the new page */
-  gsap.set(overlay,{clipPath:'circle(150% at 50% 50%)'});
-  gsap.to(overlay,{clipPath:'circle(0% at 50% 50%)',duration:.75,ease:'power4.inOut',delay:.05});
+  /* Each destination page gets its own animation style */
+  const PAGE_FX={
+    'index.html':          'circle',
+    'about.html':          'fade',
+    'experience.html':     'slide-right',
+    'techstack.html':      'slide-up',
+    'certifications.html': 'wipe',
+    'contact.html':        'diagonal',
+  };
 
-  /* Exit: nav label flies to center then circle expands from click origin */
+  /* Each page has its own gradient color */
+  const PAGE_COLOR={
+    'index.html':          'linear-gradient(135deg,#06b6d4,#8b5cf6)',
+    'about.html':          'linear-gradient(135deg,#8b5cf6,#10b981)',
+    'experience.html':     'linear-gradient(135deg,#06b6d4,#3b82f6)',
+    'techstack.html':      'linear-gradient(135deg,#10b981,#06b6d4)',
+    'certifications.html': 'linear-gradient(135deg,#8b5cf6,#ec4899)',
+    'contact.html':        'linear-gradient(135deg,#f59e0b,#ef4444)',
+  };
+
+  /* ── ENTER: reveal the page based on the fx stored by previous page ── */
+  const enterFx=sessionStorage.getItem('ptFx')||'circle';
+  const enterColor=sessionStorage.getItem('ptColor')||PAGE_COLOR['index.html'];
+  sessionStorage.removeItem('ptFx');
+  sessionStorage.removeItem('ptColor');
+  overlay.style.background=enterColor;
+
+  switch(enterFx){
+    case 'fade':
+      gsap.set(overlay,{opacity:1,clearProps:'clipPath,xPercent,yPercent'});
+      gsap.to(overlay,{opacity:0,duration:.75,ease:'power2.inOut',delay:.05});
+      break;
+    case 'slide-right':
+      gsap.set(overlay,{xPercent:0,clearProps:'clipPath,opacity,yPercent'});
+      gsap.to(overlay,{xPercent:-100,duration:.75,ease:'power4.inOut',delay:.05});
+      break;
+    case 'slide-up':
+      gsap.set(overlay,{yPercent:0,clearProps:'clipPath,opacity,xPercent'});
+      gsap.to(overlay,{yPercent:-100,duration:.75,ease:'power4.inOut',delay:.05});
+      break;
+    case 'wipe':
+      gsap.set(overlay,{clipPath:'inset(0 0% 0 0)',clearProps:'opacity,xPercent,yPercent'});
+      gsap.to(overlay,{clipPath:'inset(0 100% 0 0)',duration:.75,ease:'power4.inOut',delay:.05});
+      break;
+    case 'diagonal':
+      gsap.set(overlay,{clipPath:'polygon(0% 0%,100% 0%,100% 100%,0% 100%)',clearProps:'opacity,xPercent,yPercent'});
+      gsap.to(overlay,{clipPath:'polygon(100% 0%,100% 0%,100% 100%,100% 100%)',duration:.75,ease:'power4.inOut',delay:.05});
+      break;
+    default: /* circle */
+      gsap.set(overlay,{clipPath:'circle(150% at 50% 50%)',clearProps:'opacity,xPercent,yPercent'});
+      gsap.to(overlay,{clipPath:'circle(0% at 50% 50%)',duration:.75,ease:'power4.inOut',delay:.05});
+  }
+
+  /* ── EXIT: animate overlay over the page then navigate ── */
   document.addEventListener('click',e=>{
     const link=e.target.closest('a.page-link');
     if(!link) return;
     const href=link.getAttribute('href');
     if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')) return;
     e.preventDefault();
+
+    const fx=PAGE_FX[href]||'circle';
+    const color=PAGE_COLOR[href]||PAGE_COLOR['index.html'];
+    sessionStorage.setItem('ptFx',fx);
+    sessionStorage.setItem('ptColor',color);
+    overlay.style.background=color;
 
     const rect=link.getBoundingClientRect();
     const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
@@ -50,7 +105,7 @@ function hexToRgb(hex){
       if(!li.contains(link)) gsap.to(li,{opacity:0,y:-10,scale:.85,duration:.22,ease:'power2.in'});
     });
 
-    /* Label flies from nav item to screen center and fades out large */
+    /* Label flies from nav item to screen center */
     const lbl=document.createElement('div');
     lbl.className='pt-nav-label';
     lbl.textContent=link.textContent.trim();
@@ -60,13 +115,33 @@ function hexToRgb(hex){
       {x:ww/2,y:wh/2,scale:3,opacity:0,duration:.65,ease:'power3.inOut',onComplete:()=>lbl.remove()}
     );
 
-    /* Gradient circle explodes from the nav item's position */
-    gsap.set(overlay,{clipPath:`circle(0px at ${cx}px ${cy}px)`});
-    gsap.to(overlay,{
-      clipPath:`circle(200vmax at ${cx}px ${cy}px)`,
-      duration:.55, delay:.22, ease:'power4.inOut',
-      onComplete:()=>{window.location.href=href;}
-    });
+    const done=()=>{window.location.href=href;};
+
+    switch(fx){
+      case 'fade':
+        gsap.set(overlay,{opacity:0,clearProps:'clipPath,xPercent,yPercent'});
+        gsap.to(overlay,{opacity:1,duration:.55,delay:.22,ease:'power2.inOut',onComplete:done});
+        break;
+      case 'slide-right':
+        gsap.set(overlay,{xPercent:100,clearProps:'clipPath,opacity,yPercent'});
+        gsap.to(overlay,{xPercent:0,duration:.55,delay:.22,ease:'power4.inOut',onComplete:done});
+        break;
+      case 'slide-up':
+        gsap.set(overlay,{yPercent:100,clearProps:'clipPath,opacity,xPercent'});
+        gsap.to(overlay,{yPercent:0,duration:.55,delay:.22,ease:'power4.inOut',onComplete:done});
+        break;
+      case 'wipe':
+        gsap.set(overlay,{clipPath:'inset(0 100% 0 0)',clearProps:'opacity,xPercent,yPercent'});
+        gsap.to(overlay,{clipPath:'inset(0 0% 0 0)',duration:.55,delay:.22,ease:'power4.inOut',onComplete:done});
+        break;
+      case 'diagonal':
+        gsap.set(overlay,{clipPath:'polygon(100% 0%,100% 0%,100% 100%,100% 100%)',clearProps:'opacity,xPercent,yPercent'});
+        gsap.to(overlay,{clipPath:'polygon(0% 0%,100% 0%,100% 100%,0% 100%)',duration:.55,delay:.22,ease:'power4.inOut',onComplete:done});
+        break;
+      default: /* circle from click origin */
+        gsap.set(overlay,{clipPath:`circle(0px at ${cx}px ${cy}px)`,clearProps:'opacity,xPercent,yPercent'});
+        gsap.to(overlay,{clipPath:`circle(200vmax at ${cx}px ${cy}px)`,duration:.55,delay:.22,ease:'power4.inOut',onComplete:done});
+    }
   });
 })();
 
@@ -260,7 +335,20 @@ function startHeroAnim(){
   });
   const certs=document.querySelectorAll('.gsap-cert');
   if(certs.length){
-    ScrollTrigger.create({trigger:certs[0],start:'top 85%',onEnter:()=>{gsap.to(certs,{opacity:1,y:0,duration:.6,stagger:.1,ease:'power3.out'});certs.forEach(e=>e.classList.add('animated'));}});
+    /* Alternating layout: odd items slide from left, even from right */
+    const isAlt=certs[0].classList.contains('cert-alt-item');
+    if(isAlt){
+      certs.forEach((el,i)=>{
+        const fromX=i%2===0?-60:60;
+        gsap.set(el,{opacity:0,x:fromX});
+        ScrollTrigger.create({trigger:el,start:'top 88%',onEnter:()=>{
+          gsap.to(el,{opacity:1,x:0,duration:.7,ease:'power3.out'});
+          el.classList.add('animated');
+        }});
+      });
+    } else {
+      ScrollTrigger.create({trigger:certs[0],start:'top 85%',onEnter:()=>{gsap.to(certs,{opacity:1,y:0,duration:.6,stagger:.1,ease:'power3.out'});certs.forEach(e=>e.classList.add('animated'));}});
+    }
   }
   const logoGrid=document.getElementById('logoGrid');
   if(logoGrid){
