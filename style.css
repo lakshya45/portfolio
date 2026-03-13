@@ -83,7 +83,8 @@ input,textarea { font-family:inherit; }
 .pt-overlay {
   position:fixed; inset:0; z-index:9999;
   background:linear-gradient(135deg,var(--accent),var(--purple));
-  transform:scaleY(0); transform-origin:bottom; pointer-events:none;
+  pointer-events:none;
+  clip-path: circle(0% at 50% 50%);
 }
 
 /* ─── CUSTOM CURSOR ──────────────────────────────────────────── */
@@ -162,6 +163,21 @@ body.cursor-hover #cursorRing { width:48px; height:48px; border-color:rgba(var(-
   font-size:.9rem; transition:var(--transition); cursor:pointer;
 }
 .theme-toggle:hover { background:var(--surface-2); border-color:var(--border-2); }
+
+.nav-terminal-btn {
+  width:36px; height:36px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--surface); border:1px solid var(--border);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; font-weight:700;
+  color:var(--accent); transition:var(--transition); cursor:pointer; letter-spacing:-.5px;
+  position:relative;
+}
+.nav-terminal-btn:hover { background:var(--accent-glow); border-color:rgba(var(--accent-rgb),.4); box-shadow:0 0 12px rgba(var(--accent-rgb),.25); }
+.nav-terminal-btn::after {
+  content:''; position:absolute; inset:-3px; border-radius:10px;
+  border:1px solid rgba(var(--accent-rgb),.0); transition:var(--transition);
+}
+.nav-terminal-btn:hover::after { border-color:rgba(var(--accent-rgb),.35); }
 
 [data-theme="dark"]  .theme-icon-light { display:none; }
 [data-theme="light"] .theme-icon-dark  { display:none; }
@@ -357,8 +373,13 @@ body.cursor-hover #cursorRing { width:48px; height:48px; border-color:rgba(var(-
   transition:color var(--transition);
 }
 .marquee-item img { width:20px; height:20px; object-fit:contain; filter:grayscale(.4); transition:filter var(--transition); }
-.marquee-item:hover { color:var(--text); }
-.marquee-item:hover img { filter:none; }
+.marquee-item:hover {
+  color:var(--text);
+  background:var(--accent-glow);
+  border-radius:8px;
+  box-shadow:0 0 18px rgba(var(--accent-rgb),.22), inset 0 0 12px rgba(var(--accent-rgb),.06);
+}
+.marquee-item:hover img { filter:none; drop-shadow:0 0 6px currentColor; }
 
 /* ─── SECTIONS ───────────────────────────────────────────────── */
 .section { padding:7rem 0; }

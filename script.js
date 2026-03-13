@@ -29,19 +29,21 @@ function hexToRgb(hex){
   const overlay=document.getElementById('ptOverlay');
   if(!overlay||typeof gsap==='undefined') return;
 
-  /* Enter: slide overlay away upward */
-  gsap.set(overlay,{scaleY:1,transformOrigin:'top'});
-  gsap.to(overlay,{scaleY:0,duration:.65,ease:'power4.inOut',delay:.05});
+  /* Enter: circle shrinks away from center to reveal page */
+  gsap.set(overlay,{clipPath:'circle(150% at 50% 50%)'});
+  gsap.to(overlay,{clipPath:'circle(0% at 50% 50%)',duration:.7,ease:'power4.inOut',delay:.05});
 
-  /* Exit: intercept page-link clicks */
+  /* Exit: intercept page-link clicks — circle expands from click point */
   document.addEventListener('click',e=>{
     const link=e.target.closest('a.page-link');
     if(!link) return;
     const href=link.getAttribute('href');
     if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')) return;
     e.preventDefault();
-    gsap.set(overlay,{scaleY:0,transformOrigin:'bottom'});
-    gsap.to(overlay,{scaleY:1,duration:.5,ease:'power4.inOut',onComplete:()=>{window.location.href=href;}});
+    const cx=Math.round((e.clientX/window.innerWidth)*100);
+    const cy=Math.round((e.clientY/window.innerHeight)*100);
+    gsap.set(overlay,{clipPath:`circle(0% at ${cx}% ${cy}%)`});
+    gsap.to(overlay,{clipPath:`circle(150% at ${cx}% ${cy}%)`,duration:.55,ease:'power4.inOut',onComplete:()=>{window.location.href=href;}});
   });
 })();
 
@@ -114,6 +116,11 @@ function buildLogoGrid(){
   });
 }
 
+/* Auto-init logoGrid on pages without a loader (e.g. techstack.html) */
+if(document.getElementById('logoGrid')&&!document.getElementById('loader')){
+  buildLogoGrid();
+}
+
 /* ─── MARQUEE LOGOS (index page) ────────────────────────────── */
 (function(){
   const tracks=document.querySelectorAll('.marquee-track');
@@ -129,12 +136,13 @@ function buildLogoGrid(){
       item.appendChild(document.createTextNode(t.name));
       track.appendChild(item);
     });
-  });
-  /* Duplicate for seamless loop */
-  tracks.forEach(track=>{
-    const clone=track.cloneNode(true);
-    clone.setAttribute('aria-hidden','true');
-    track.parentElement.appendChild(clone);
+    /* Duplicate items inside the same track for seamless loop */
+    const items=[...track.querySelectorAll('.marquee-item')];
+    items.forEach(item=>{
+      const clone=item.cloneNode(true);
+      clone.setAttribute('aria-hidden','true');
+      track.appendChild(clone);
+    });
   });
 })();
 
@@ -216,7 +224,24 @@ function startHeroAnim(){
   });
   const skills=document.querySelectorAll('.gsap-skill');
   if(skills.length){
-    ScrollTrigger.create({trigger:skills[0],start:'top 85%',onEnter:()=>{gsap.to(skills,{opacity:1,scale:1,y:0,duration:.55,stagger:.07,ease:'back.out(1.5)'});skills.forEach(e=>e.classList.add('animated'));}});
+    gsap.set(skills,{opacity:0,scale:.7,y:30,rotation:-4});
+    ScrollTrigger.create({trigger:skills[0],start:'top 85%',onEnter:()=>{gsap.to(skills,{opacity:1,scale:1,y:0,rotation:0,duration:.65,stagger:.08,ease:'back.out(2.2)'});skills.forEach(e=>e.classList.add('animated'));}});
+  }
+
+  /* Badge zoom-pop entrance (about page hero-badges + stat cards) */
+  const badges=document.querySelectorAll('.hero-badges .badge');
+  if(badges.length){
+    gsap.set(badges,{opacity:0,scale:0,rotation:8});
+    ScrollTrigger.create({trigger:badges[0],start:'top 92%',onEnter:()=>{
+      gsap.to(badges,{opacity:1,scale:1,rotation:0,duration:.6,stagger:.1,ease:'back.out(2.8)'});
+    }});
+  }
+  const statCards=document.querySelectorAll('.stat');
+  if(statCards.length){
+    gsap.set(statCards,{opacity:0,scale:.5,y:24});
+    ScrollTrigger.create({trigger:statCards[0],start:'top 90%',onEnter:()=>{
+      gsap.to(statCards,{opacity:1,scale:1,y:0,duration:.65,stagger:.12,ease:'back.out(2.5)'});
+    }});
   }
   document.querySelectorAll('.gsap-timeline').forEach((el,i)=>{
     ScrollTrigger.create({trigger:el,start:'top 88%',onEnter:()=>{gsap.to(el,{opacity:1,x:0,delay:i*.15,duration:.8,ease:'power3.out'});el.classList.add('animated');}});
@@ -325,6 +350,8 @@ function startHeroAnim(){
   function open(){overlay.classList.add('open');input.focus();if(!booted){booted=true;cmdBanner();}}
   function close(){overlay.classList.remove('open');}
   fab.addEventListener('click',open);
+  const navTermBtn=document.getElementById('navTermBtn');
+  if(navTermBtn) navTermBtn.addEventListener('click',open);
   closeBtn.addEventListener('click',close);
   overlay.addEventListener('click',e=>{if(e.target===overlay)close();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))close();});
