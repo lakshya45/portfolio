@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-page="techstack">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Tech Stack — Lakshya Chhajed</title>
+  <meta name="description" content="Technologies and tools used by Lakshya Chhajed — AWS, Docker, Kubernetes, Terraform, and more."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="ptOverlay" class="pt-overlay"></div>
+<div id="cursor"></div><div id="cursorRing"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="logo" href="index.html" class="page-link">LC<span class="dot">.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"      class="page-link" data-nav="home">Home</a></li>
+      <li><a href="about.html"      class="page-link" data-nav="about">About</a></li>
+      <li><a href="experience.html" class="page-link" data-nav="experience">Experience</a></li>
+      <li><a href="techstack.html"  class="page-link" data-nav="techstack">Tech Stack</a></li>
+      <li><a href="certifications.html" class="page-link" data-nav="certifications">Certs</a></li>
+      <li><a href="contact.html"    class="page-link" data-nav="contact">Contact</a></li>
+      <li><a href="https://www.linkedin.com/in/lakshya-chhajed" target="_blank" class="nav-linkedin">LinkedIn ↗</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon-dark">🌙</span><span class="theme-icon-light">☀️</span>
+      </button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-bg">
+    <div class="neural-grid" aria-hidden="true"></div>
+    <div class="ph-blob ph-blob-1"></div><div class="ph-blob ph-blob-2"></div>
+  </div>
+  <div class="container page-header-inner">
+    <p class="page-header-label">// tech.stack</p>
+    <h1 class="page-header-title">Tools I <span class="highlight">Live In</span></h1>
+    <p class="page-header-sub">The DevOps toolkit powering production infrastructure every day.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title gsap-title"><span class="section-num">01.</span> Technology Arsenal</h2>
+    <p class="tech-intro gsap-up">Hover a badge to pause the float animation</p>
+    <div class="techstack-scene">
+      <div class="devops-city" id="devopsCity" aria-hidden="true"></div>
+      <div class="logo-float-grid" id="logoGrid"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Designed & Built by <strong>Lakshya Chhajed</strong></p>
+    <p class="footer-sub">DevOps Lead Engineer · Surat, India · 2026</p>
+  </div>
+</footer>
+<a href="#" class="back-to-top" id="backToTop">↑</a>
+
+<div id="termOverlay" class="term-overlay"><div class="term-window"><div class="term-win-header"><div class="term-win-dots"><button class="twdot red" id="termClose"></button><span class="twdot yellow"></span><span class="twdot green"></span></div><span class="term-win-title">lakshya@portfolio:~$</span><span class="term-win-hint">type <kbd>help</kbd></span></div><div class="term-win-body" id="termBody"></div><div class="term-win-input-row"><span class="term-prompt-label">lakshya@portfolio:~$&nbsp;</span><input type="text" id="termInput" class="term-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="type a command..."/></div><div class="term-suggestions" id="termSuggestions"></div></div></div>
+<button class="term-fab" id="termFab" title="Open terminal"><span class="term-fab-icon">⌨</span><span class="term-fab-label">Terminal</span><span class="term-fab-ping"></span></button>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

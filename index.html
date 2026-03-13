@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-page="home">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Lakshya Chhajed — DevOps Lead Engineer</title>
-  <meta name="description" content="DevOps Lead Engineer specializing in AWS, GCP, Kubernetes, Terraform, and cloud infrastructure." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="DevOps Lead Engineer specializing in AWS, GCP, Kubernetes, Terraform, and cloud infrastructure at scale."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+<div id="ptOverlay" class="pt-overlay"></div>
+<div id="cursor"></div><div id="cursorRing"></div>
 
-<!-- ─── CURSOR ──────────────────────────────────────────────── -->
-<div id="cursor"></div>
-<div id="cursorRing"></div>
-
-<!-- ─── LOADER ─────────────────────────────────────────────── -->
+<!-- LOADER -->
 <div id="loader">
   <div class="loader-inner">
     <div class="loader-logo">LC<span>.</span></div>
@@ -24,22 +22,21 @@
   </div>
 </div>
 
-<!-- ─── NAV ─────────────────────────────────────────────────── -->
+<!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a class="logo" href="#">LC<span class="dot">.</span></a>
+    <a class="logo" href="index.html">LC<span class="dot">.</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#techstack">Tech Stack</a></li>
-      <li><a href="#certifications">Certs</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="index.html"      class="page-link" data-nav="home">Home</a></li>
+      <li><a href="about.html"      class="page-link" data-nav="about">About</a></li>
+      <li><a href="experience.html" class="page-link" data-nav="experience">Experience</a></li>
+      <li><a href="techstack.html"  class="page-link" data-nav="techstack">Tech Stack</a></li>
+      <li><a href="certifications.html" class="page-link" data-nav="certifications">Certs</a></li>
+      <li><a href="contact.html"    class="page-link" data-nav="contact">Contact</a></li>
       <li><a href="https://www.linkedin.com/in/lakshya-chhajed" target="_blank" class="nav-linkedin">LinkedIn ↗</a></li>
     </ul>
     <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <span class="theme-icon-dark">🌙</span>
         <span class="theme-icon-light">☀️</span>
       </button>
@@ -50,231 +47,175 @@
   </div>
 </nav>
 
-<!-- ─── HERO ─────────────────────────────────────────────────── -->
+<!-- HERO -->
 <section id="hero">
-  <!-- Animated background blobs -->
+  <div class="neural-grid" aria-hidden="true"></div>
   <div class="hero-bg" aria-hidden="true">
     <div class="hero-blob blob-1"></div>
     <div class="hero-blob blob-2"></div>
     <div class="hero-blob blob-3"></div>
   </div>
-
-  <!-- Floating tech pill badges (CSS only) -->
   <div class="hero-pills" aria-hidden="true">
-    <span class="hero-pill" style="--c:#FF9900;top:20%;left:4%;animation-delay:-0.5s">☁ AWS</span>
-    <span class="hero-pill" style="--c:#2496ED;top:16%;right:5%;animation-delay:-1.3s">🐳 Docker</span>
-    <span class="hero-pill" style="--c:#326CE5;top:42%;left:2%;animation-delay:-2.2s">⎈ Kubernetes</span>
-    <span class="hero-pill" style="--c:#7B42BC;top:62%;right:4%;animation-delay:-0.9s">⬡ Terraform</span>
-    <span class="hero-pill" style="--c:#4285F4;top:34%;right:3%;animation-delay:-1.8s">🌐 GCP</span>
-    <span class="hero-pill" style="--c:#F46800;top:74%;left:5%;animation-delay:-3.3s">📊 Grafana</span>
-    <span class="hero-pill" style="--c:#EF7B4D;top:13%;left:20%;animation-delay:-1.6s">ArgoCD</span>
-    <span class="hero-pill" style="--c:#277A9F;top:80%;right:14%;animation-delay:-2.7s">Helm</span>
-    <span class="hero-pill" style="--c:#E6522C;top:10%;right:24%;animation-delay:-0.3s">Prometheus</span>
-    <span class="hero-pill" style="--c:#D24939;top:70%;left:16%;animation-delay:-2.1s">Jenkins</span>
-    <span class="hero-pill" style="--c:#3776AB;top:82%;right:28%;animation-delay:-1.0s">Python</span>
-    <span class="hero-pill" style="--c:#8B949E;top:50%;right:2%;animation-delay:-3.6s">GitHub</span>
+    <span class="hero-pill" style="--c:#FF9900;top:22%;left:4%;animation-delay:-.5s">☁ AWS</span>
+    <span class="hero-pill" style="--c:#2496ED;top:15%;right:5%;animation-delay:-1.3s">🐳 Docker</span>
+    <span class="hero-pill" style="--c:#326CE5;top:44%;left:2%;animation-delay:-2.2s">⎈ Kubernetes</span>
+    <span class="hero-pill" style="--c:#7B42BC;top:65%;right:4%;animation-delay:-.9s">⬡ Terraform</span>
+    <span class="hero-pill" style="--c:#4285F4;top:35%;right:3%;animation-delay:-1.8s">🌐 GCP</span>
+    <span class="hero-pill" style="--c:#F46800;top:75%;left:5%;animation-delay:-3.3s">📊 Grafana</span>
+    <span class="hero-pill" style="--c:#EF7B4D;top:12%;left:22%;animation-delay:-1.6s">ArgoCD</span>
+    <span class="hero-pill" style="--c:#277A9F;top:82%;right:15%;animation-delay:-2.7s">Helm</span>
+    <span class="hero-pill" style="--c:#E6522C;top:9%;right:25%;animation-delay:-.3s">Prometheus</span>
   </div>
 
-  <div class="hero-content">
-    <p class="hero-greeting">Hi, I'm</p>
-    <h1 class="hero-name">Lakshya <span class="highlight">Chhajed</span></h1>
-    <div class="hero-terminal">
-      <span class="prompt">$ </span><span id="typed"></span><span class="cursor-blink">▋</span>
+  <div class="container hero-layout">
+    <!-- Left: content -->
+    <div class="hero-content">
+      <p class="hero-greeting">Hi, I'm</p>
+      <h1 class="hero-name">Lakshya <span class="highlight">Chhajed</span></h1>
+      <div class="hero-terminal">
+        <span class="prompt">$ </span><span id="typed"></span><span class="cursor-blink">▋</span>
+      </div>
+      <p class="hero-sub">Building scalable cloud infrastructure · Automating everything · Surat, India</p>
+      <div class="hero-btns">
+        <a href="experience.html" class="btn btn-primary magnetic page-link">View My Work</a>
+        <a href="https://www.linkedin.com/in/lakshya-chhajed" target="_blank" class="btn btn-outline magnetic">LinkedIn ↗</a>
+      </div>
+      <div class="hero-badges">
+        <span class="badge">☁ AWS Certified</span>
+        <span class="badge">🔧 Terraform Certified</span>
+        <span class="badge">⚡ 4+ Years Experience</span>
+      </div>
     </div>
-    <p class="hero-sub">Building scalable cloud infrastructure · Automating everything · Surat, India</p>
-    <div class="hero-btns">
-      <a href="#experience" class="btn btn-primary magnetic">View My Work</a>
-      <a href="https://www.linkedin.com/in/lakshya-chhajed" target="_blank" class="btn btn-outline magnetic">LinkedIn ↗</a>
-    </div>
-    <div class="hero-badges">
-      <span class="badge">☁ AWS Certified</span>
-      <span class="badge">🔧 Terraform Certified</span>
-      <span class="badge">⚡ 4+ Years Experience</span>
+
+    <!-- Right: dashboard card -->
+    <div class="hero-dashboard" id="heroDashboard">
+      <div class="dashboard-scan"></div>
+      <div class="dashboard-header">
+        <div class="status-dot"></div>
+        <span class="dash-label">system.dashboard</span>
+        <span class="dash-version">v4.2</span>
+      </div>
+
+      <div class="dash-row">
+        <span class="dash-key">ROLE</span>
+        <span class="dash-val accent">DevOps Lead Engineer</span>
+      </div>
+      <div class="dash-row">
+        <span class="dash-key">COMPANY</span>
+        <span class="dash-val">IAMOPS</span>
+      </div>
+      <div class="dash-row">
+        <span class="dash-key">LEVEL</span>
+        <span class="dash-val">L4 · Active</span>
+      </div>
+
+      <hr class="dash-divider"/>
+
+      <div class="dash-bar-row">
+        <div class="dash-bar-label"><span>AWS Proficiency</span><span>92%</span></div>
+        <div class="dash-bar-track"><div class="dash-bar-fill" data-pct="92%"></div></div>
+      </div>
+      <div class="dash-bar-row">
+        <div class="dash-bar-label"><span>GCP Proficiency</span><span>78%</span></div>
+        <div class="dash-bar-track"><div class="dash-bar-fill" data-pct="78%"></div></div>
+      </div>
+      <div class="dash-bar-row">
+        <div class="dash-bar-label"><span>Kubernetes Expertise</span><span>88%</span></div>
+        <div class="dash-bar-track"><div class="dash-bar-fill green" data-pct="88%"></div></div>
+      </div>
+      <div class="dash-bar-row">
+        <div class="dash-bar-label"><span>Terraform / IaC</span><span>90%</span></div>
+        <div class="dash-bar-track"><div class="dash-bar-fill" data-pct="90%"></div></div>
+      </div>
+
+      <hr class="dash-divider"/>
+
+      <div class="dash-row">
+        <span class="dash-key">CERTS</span>
+        <span class="dash-val">3 Cloud Certifications</span>
+      </div>
+      <div class="dash-row">
+        <span class="dash-key">STATUS</span>
+        <span class="dash-val green">● Open to Opportunities</span>
+      </div>
+      <div class="dash-row">
+        <span class="dash-key">LOCATION</span>
+        <span class="dash-val">Surat, India</span>
+      </div>
+
+      <div class="dashboard-terminal">
+        &gt; building cloud infra @ scale<span class="term-cursor-small"></span>
+      </div>
     </div>
   </div>
   <div class="scroll-indicator"><div class="scroll-line"></div><span>scroll</span></div>
 </section>
 
-<!-- ─── ABOUT ─────────────────────────────────────────────────── -->
-<section id="about" class="section">
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marqueeTrack1"></div>
+</div>
+
+<!-- WHAT I BUILD -->
+<section class="whatido-section section">
   <div class="container">
-    <h2 class="section-title gsap-title"><span class="section-num">01.</span> About Me</h2>
-    <div class="about-grid">
-      <div class="about-text gsap-up">
-        <p>I'm a <strong>DevOps Lead Engineer</strong> at <strong>IAMOPS | Growth Fanatics DevOps</strong> with over <strong>4+ years</strong> of hands-on experience architecting and operating cloud infrastructure at scale.</p>
-        <p>I specialize in designing cloud-native systems on <strong>AWS & GCP</strong>, orchestrating containerized workloads on <strong>Kubernetes (EKS/GKE)</strong>, and driving <strong>Infrastructure as Code</strong> adoption with Terraform.</p>
-        <p>When I'm not pushing infrastructure improvements, I'm into <strong>VFX, 3D Animation,</strong> and exploring motion graphics.</p>
-        <div class="about-stats">
-          <div class="stat"><span class="stat-num"><span class="counter" data-target="4">0</span>+</span><span class="stat-label">Years Experience</span></div>
-          <div class="stat"><span class="stat-num"><span class="counter" data-target="3">0</span></span><span class="stat-label">Cloud Certifications</span></div>
-          <div class="stat"><span class="stat-num">AWS+GCP</span><span class="stat-label">Cloud Platforms</span></div>
-        </div>
+    <h2 class="section-title gsap-title" style="justify-content:center"><span class="section-num">—</span> What I Build</h2>
+    <p class="whatido-subtitle">Cloud-native solutions from zero to production at scale</p>
+    <div class="whatido-grid">
+      <div class="whatido-card gsap-up">
+        <div class="whatido-icon">☁️</div>
+        <div class="whatido-title">Cloud Infrastructure</div>
+        <div class="whatido-desc">Architecting production-grade AWS & GCP environments with EC2, ECS, EKS, RDS, CloudFront, and more — designed for reliability and cost efficiency.</div>
+        <div class="whatido-tags"><span>AWS</span><span>GCP</span><span>EKS</span><span>GKE</span></div>
       </div>
-      <div class="about-card gsap-up" style="--delay:0.2s">
-        <div class="terminal-card" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.12">
-          <div class="terminal-header">
-            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-            <span class="terminal-title">lakshya@devops ~ whoami</span>
-          </div>
-          <div class="terminal-body">
-            <div class="t-line"><span class="t-key">name</span>       <span class="t-op">:</span> <span class="t-val">"Lakshya Chhajed"</span></div>
-            <div class="t-line"><span class="t-key">role</span>       <span class="t-op">:</span> <span class="t-val">"DevOps Lead Engineer"</span></div>
-            <div class="t-line"><span class="t-key">company</span>    <span class="t-op">:</span> <span class="t-val">"IAMOPS"</span></div>
-            <div class="t-line"><span class="t-key">level</span>      <span class="t-op">:</span> <span class="t-val">"L4 Lead Engineer"</span></div>
-            <div class="t-line"><span class="t-key">exp</span>        <span class="t-op">:</span> <span class="t-val">"4+ years Cloud & DevOps"</span></div>
-            <div class="t-line"><span class="t-key">clouds</span>     <span class="t-op">:</span> <span class="t-val">["AWS", "GCP"]</span></div>
-            <div class="t-line"><span class="t-key">iac</span>        <span class="t-op">:</span> <span class="t-val">"Terraform"</span></div>
-            <div class="t-line"><span class="t-key">linkedin</span>   <span class="t-op">:</span> <a class="t-link" href="https://www.linkedin.com/in/lakshya-chhajed" target="_blank"><span class="t-val">in/lakshya-chhajed ↗</span></a></div>
-            <div class="t-line"><span class="t-key">status</span>     <span class="t-op">:</span> <span class="t-val t-green">"open to opportunities"</span></div>
-          </div>
-        </div>
+      <div class="whatido-card gsap-up" style="--delay:.1s">
+        <div class="whatido-icon">🔧</div>
+        <div class="whatido-title">Infrastructure as Code</div>
+        <div class="whatido-desc">Modular Terraform configurations for multi-environment deployments with remote state, workspaces, and zero-manual-click provisioning.</div>
+        <div class="whatido-tags"><span>Terraform</span><span>GitOps</span><span>Modules</span></div>
+      </div>
+      <div class="whatido-card gsap-up" style="--delay:.2s">
+        <div class="whatido-icon">⚙️</div>
+        <div class="whatido-title">CI/CD & Automation</div>
+        <div class="whatido-desc">GitHub Actions pipelines, ArgoCD GitOps workflows, Jenkins blue-green deployments, and one-click on-demand developer environments.</div>
+        <div class="whatido-tags"><span>GitHub Actions</span><span>ArgoCD</span><span>Jenkins</span></div>
+      </div>
+      <div class="whatido-card gsap-up" style="--delay:.3s">
+        <div class="whatido-icon">📊</div>
+        <div class="whatido-title">Observability Stack</div>
+        <div class="whatido-desc">Full-stack monitoring with Prometheus, Grafana, Loki, Mimir, and OpenTelemetry — real-time insights, alerting, and tracing at every layer.</div>
+        <div class="whatido-tags"><span>Prometheus</span><span>Grafana</span><span>Loki</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── EXPERIENCE ─────────────────────────────────────────────── -->
-<section id="experience" class="section section-alt">
+<!-- STATS -->
+<section class="stats-section">
   <div class="container">
-    <h2 class="section-title gsap-title"><span class="section-num">02.</span> Experience</h2>
-    <div class="timeline">
-      <div class="timeline-item gsap-timeline">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card glass-card" data-tilt data-tilt-max="3" data-tilt-speed="800" data-tilt-glare="true" data-tilt-max-glare="0.06">
-          <div class="job-header">
-            <div><h3 class="job-title">DevOps Lead Engineer</h3><p class="job-company">IAMOPS | Growth Fanatics DevOps</p></div>
-            <div class="job-meta"><span class="job-date">Aug 2022 — Present</span><span class="job-loc">Surat, India</span></div>
-          </div>
-          <div class="job-levels">
-            <span class="level-tag">L4 Lead Engineer · Jan 2026–Present</span>
-            <span class="level-tag">L3 DevOps Lead · 2025</span>
-            <span class="level-tag">L2 DevOps Engineer · 2024</span>
-            <span class="level-tag">L1 Cloud Engineer · 2022–2023</span>
-          </div>
-          <ul class="job-bullets">
-            <li>Led cloud infrastructure design on <strong>AWS & GCP</strong> using Terraform IaC — provisioning ECS, EKS, GKE, ALB, RDS, CloudFront, WAF, Route 53, and more.</li>
-            <li>Successfully migrated client workloads from <strong>ECS → EKS</strong>, driving cost savings through Kubernetes-native autoscaling (Cluster Autoscaler + Karpenter).</li>
-            <li>Designed <strong>on-demand developer environments</strong> with one-click Kubernetes deployments and automated GitHub Actions workflows.</li>
-            <li>Built <strong>CI/CD pipelines</strong> with GitHub Actions for AWS and GCP; Jenkins master-slave on spot instances for blue-green ECS deployments.</li>
-            <li>Implemented <strong>GitOps</strong> with ArgoCD; deployed full observability stack: <strong>Prometheus · Grafana · Loki · Mimir</strong>.</li>
-            <li>Enhanced security via <strong>AWS WAF + Shield Advanced</strong>, Inspector, Security Hub, and Vanta for compliance audits.</li>
-            <li>Deployed <strong>MCP servers</strong> for Grafana, Jira, and Confluence using Helm on EKS with Onyx Cloud.</li>
-            <li>Conducted <strong>Terraform workshops</strong> to upskill team members.</li>
-          </ul>
-          <div class="tech-tags"><span>AWS</span><span>GCP</span><span>Terraform</span><span>Kubernetes</span><span>EKS</span><span>GKE</span><span>Helm</span><span>ArgoCD</span><span>GitHub Actions</span><span>Prometheus</span><span>Grafana</span><span>Docker</span><span>Jenkins</span><span>Python</span></div>
-        </div>
+    <div class="stats-grid">
+      <div class="stats-item">
+        <span class="stats-num"><span class="counter" data-target="4">0</span>+</span>
+        <span class="stats-label">Years Experience</span>
       </div>
-      <div class="timeline-item gsap-timeline">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card glass-card" data-tilt data-tilt-max="3" data-tilt-speed="800">
-          <div class="job-header">
-            <div><h3 class="job-title">AWS Cloud DevOps Engineer <span class="intern-tag">Internship</span></h3><p class="job-company">AppGambit</p></div>
-            <div class="job-meta"><span class="job-date">Dec 2021 — Jun 2022</span><span class="job-loc">Surat, India</span></div>
-          </div>
-          <ul class="job-bullets">
-            <li>Established <strong>Infrastructure as Code</strong> with Terraform — ALB, EC2, ECS, Route 53, CloudFront on AWS.</li>
-            <li>Designed and maintained <strong>CI/CD pipelines</strong> using GitHub Actions for containerized applications.</li>
-            <li>Collaborated across teams to ensure uniform and replicable deployments.</li>
-          </ul>
-          <div class="tech-tags"><span>AWS</span><span>Terraform</span><span>ECS</span><span>EC2</span><span>CloudFront</span><span>GitHub Actions</span><span>Docker</span></div>
-        </div>
+      <div class="stats-item">
+        <span class="stats-num"><span class="counter" data-target="3">0</span></span>
+        <span class="stats-label">Cloud Certifications</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SKILLS ─────────────────────────────────────────────────── -->
-<section id="skills" class="section">
-  <div class="container">
-    <h2 class="section-title gsap-title"><span class="section-num">03.</span> Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">☁️</div><h3>Cloud Platforms</h3><div class="skill-tags"><span>AWS</span><span>GCP</span></div><div class="skill-services"><p>EC2 · ECS · EKS · RDS · S3 · Lambda · CloudFront · WAF · Route53 · ALB · GKE · Cloud DNS</p></div></div>
-      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">🐳</div><h3>Containers & Orchestration</h3><div class="skill-tags"><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>EKS</span><span>GKE</span></div><div class="skill-services"><p>Cluster Autoscaler · Karpenter · ArgoCD · GitOps · Docker Compose · ECR</p></div></div>
-      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">🔧</div><h3>Infrastructure as Code</h3><div class="skill-tags"><span>Terraform</span></div><div class="skill-services"><p>Modular configs · Environment isolation · Remote state · Workspaces · AWS & GCP</p></div></div>
-      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">⚙️</div><h3>CI/CD & Automation</h3><div class="skill-tags"><span>GitHub Actions</span><span>Jenkins</span><span>ArgoCD</span></div><div class="skill-services"><p>Blue-green · On-demand envs · PR automation · Zero-downtime pipelines</p></div></div>
-      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">📊</div><h3>Monitoring & Observability</h3><div class="skill-tags"><span>Grafana</span><span>Prometheus</span><span>Loki</span><span>Mimir</span></div><div class="skill-services"><p>Promtail · OTel Collector · Custom dashboards · Alerting · Real-time insights</p></div></div>
-      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">💻</div><h3>Scripting & Languages</h3><div class="skill-tags"><span>Python</span><span>Bash</span><span>YAML</span></div><div class="skill-services"><p>Automation scripts · Lambda functions · Workflow orchestration · CLI tooling</p></div></div>
-      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">🔒</div><h3>Security & Compliance</h3><div class="skill-tags"><span>AWS WAF</span><span>Shield</span><span>Vanta</span></div><div class="skill-services"><p>Inspector · Security Hub · VPN access control · Google SSO + Cognito</p></div></div>
-      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">🐧</div><h3>Linux & Networking</h3><div class="skill-tags"><span>Linux Admin</span><span>Networking</span></div><div class="skill-services"><p>VPC design · Subnetting · Security groups · NAT · DNS · Service Discovery</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── TECH STACK ──────────────────────────────────────────────── -->
-<section id="techstack" class="section section-alt">
-  <div class="container">
-    <h2 class="section-title gsap-title"><span class="section-num">04.</span> Tech Stack</h2>
-    <p class="tech-intro gsap-up">Tools I live in every day — hover to pause the spin</p>
-    <div class="techstack-scene">
-      <div class="devops-city" id="devopsCity" aria-hidden="true"></div>
-      <div class="logo-float-grid" id="logoGrid"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CERTIFICATIONS ──────────────────────────────────────────── -->
-<section id="certifications" class="section">
-  <div class="container">
-    <h2 class="section-title gsap-title"><span class="section-num">05.</span> Certifications</h2>
-    <div class="certs-grid">
-      <div class="cert-card glass-card gsap-cert" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
-        <div class="cert-logo aws-logo">AWS</div>
-        <div class="cert-info"><h3>AWS Certified DevOps Engineer</h3><p class="cert-level">Professional</p><p class="cert-issuer">Amazon Web Services</p></div>
-        <div class="cert-badge pro">PRO</div>
+      <div class="stats-item">
+        <span class="stats-num">2</span>
+        <span class="stats-label">Cloud Platforms</span>
       </div>
-      <div class="cert-card glass-card gsap-cert" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
-        <div class="cert-logo aws-logo">AWS</div>
-        <div class="cert-info"><h3>AWS Certified Solutions Architect</h3><p class="cert-level">Associate</p><p class="cert-issuer">Amazon Web Services</p></div>
-        <div class="cert-badge assoc">SAA</div>
-      </div>
-      <div class="cert-card glass-card gsap-cert" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
-        <div class="cert-logo tf-logo">TF</div>
-        <div class="cert-info"><h3>HashiCorp Certified: Terraform Associate</h3><p class="cert-level">003</p><p class="cert-issuer">HashiCorp</p></div>
-        <div class="cert-badge tf">003</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── EDUCATION ─────────────────────────────────────────────────── -->
-<section id="education" class="section section-alt">
-  <div class="container">
-    <h2 class="section-title gsap-title"><span class="section-num">06.</span> Education</h2>
-    <div class="edu-grid">
-      <div class="edu-card glass-card gsap-up" data-tilt data-tilt-max="6"><div class="edu-icon">🎓</div><div class="edu-info"><h3>Bachelor of Technology — Information Technology</h3><p class="edu-school">Uka Tarsadia University</p><p class="edu-location">Bardoli, India</p><div class="edu-meta"><span class="edu-year">2018 — 2022</span><span class="edu-score">CGPA: <strong>9.04 / 10</strong></span></div></div></div>
-      <div class="edu-card glass-card gsap-up" data-tilt data-tilt-max="6" style="--delay:0.15s"><div class="edu-icon">📚</div><div class="edu-info"><h3>Higher Secondary — Science</h3><p class="edu-school">St. Xavier's High School</p><p class="edu-location">Surat, India</p><div class="edu-meta"><span class="edu-year">2016 — 2018</span><span class="edu-score">Score: <strong>84%</strong></span></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CONTACT ─────────────────────────────────────────────────── -->
-<section id="contact" class="section">
-  <div class="container">
-    <h2 class="section-title gsap-title"><span class="section-num">07.</span> Get In Touch</h2>
-    <div class="contact-wrapper">
-      <div class="contact-left gsap-up">
-        <p class="contact-intro">Whether you have a cloud project, want to discuss DevOps strategy, or just want to connect — my inbox is always open.</p>
-        <div class="contact-links">
-          <a href="mailto:lakshyachhajed@yahoo.com" class="contact-item"><span class="contact-icon">✉</span><div><span class="contact-label">Email</span><span class="contact-val">lakshyachhajed@yahoo.com</span></div></a>
-          <a href="https://www.linkedin.com/in/lakshya-chhajed" target="_blank" rel="noopener" class="contact-item"><span class="contact-icon">in</span><div><span class="contact-label">LinkedIn</span><span class="contact-val">linkedin.com/in/lakshya-chhajed ↗</span></div></a>
-          <div class="contact-item"><span class="contact-icon">📍</span><div><span class="contact-label">Location</span><span class="contact-val">Surat, Gujarat, India</span></div></div>
-        </div>
-      </div>
-      <div class="contact-right gsap-up" style="--delay:0.2s">
-        <form class="contact-form glass-card" id="contactForm" data-tilt data-tilt-max="4" data-tilt-speed="600">
-          <div class="form-group"><label for="cname">Name</label><input type="text" id="cname" placeholder="Your name" required /></div>
-          <div class="form-group"><label for="cemail">Email</label><input type="email" id="cemail" placeholder="your@email.com" required /></div>
-          <div class="form-group"><label for="cmessage">Message</label><textarea id="cmessage" rows="5" placeholder="Tell me about your project..." required></textarea></div>
-          <button type="submit" class="btn btn-primary btn-full magnetic">Send Message →</button>
-          <p class="form-note">* Opens your default email client</p>
-        </form>
+      <div class="stats-item">
+        <span class="stats-num">L4</span>
+        <span class="stats-label">Lead Engineer Level</span>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-inner">
+  <div class="container">
     <p>Designed & Built by <strong>Lakshya Chhajed</strong></p>
     <p class="footer-sub">DevOps Lead Engineer · Surat, India · 2026</p>
   </div>
@@ -282,7 +223,7 @@
 
 <a href="#hero" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
 
-<!-- ─── TERMINAL ──────────────────────────────────────────────── -->
+<!-- TERMINAL -->
 <div id="termOverlay" class="term-overlay" aria-hidden="true">
   <div class="term-window">
     <div class="term-win-header">
@@ -293,12 +234,11 @@
     <div class="term-win-body" id="termBody"></div>
     <div class="term-win-input-row">
       <span class="term-prompt-label">lakshya@portfolio:~$&nbsp;</span>
-      <input type="text" id="termInput" class="term-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="type a command..." />
+      <input type="text" id="termInput" class="term-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="type a command..."/>
     </div>
     <div class="term-suggestions" id="termSuggestions"></div>
   </div>
 </div>
-
 <button class="term-fab" id="termFab" title="Open interactive terminal">
   <span class="term-fab-icon">⌨</span>
   <span class="term-fab-label">Terminal</span>

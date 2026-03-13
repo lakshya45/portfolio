@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-page="about">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>About — Lakshya Chhajed</title>
+  <meta name="description" content="About Lakshya Chhajed — DevOps Lead Engineer with 4+ years building cloud-native infrastructure."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="ptOverlay" class="pt-overlay"></div>
+<div id="cursor"></div><div id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="logo" href="index.html" class="page-link">LC<span class="dot">.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"      class="page-link" data-nav="home">Home</a></li>
+      <li><a href="about.html"      class="page-link" data-nav="about">About</a></li>
+      <li><a href="experience.html" class="page-link" data-nav="experience">Experience</a></li>
+      <li><a href="techstack.html"  class="page-link" data-nav="techstack">Tech Stack</a></li>
+      <li><a href="certifications.html" class="page-link" data-nav="certifications">Certs</a></li>
+      <li><a href="contact.html"    class="page-link" data-nav="contact">Contact</a></li>
+      <li><a href="https://www.linkedin.com/in/lakshya-chhajed" target="_blank" class="nav-linkedin">LinkedIn ↗</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon-dark">🌙</span>
+        <span class="theme-icon-light">☀️</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-bg">
+    <div class="neural-grid" aria-hidden="true"></div>
+    <div class="ph-blob ph-blob-1"></div>
+    <div class="ph-blob ph-blob-2"></div>
+  </div>
+  <div class="container page-header-inner">
+    <p class="page-header-label">// about.me</p>
+    <h1 class="page-header-title">Who I <span class="highlight scramble" data-text="Am">Am</span></h1>
+    <p class="page-header-sub">4+ years turning cloud complexity into elegant, automated infrastructure.</p>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text gsap-up">
+        <p>I'm a <strong>DevOps Lead Engineer</strong> at <strong>IAMOPS | Growth Fanatics DevOps</strong> with over <strong>4+ years</strong> of hands-on experience architecting and operating cloud infrastructure at scale.</p>
+        <p>I specialize in designing cloud-native systems on <strong>AWS & GCP</strong>, orchestrating containerized workloads on <strong>Kubernetes (EKS/GKE)</strong>, and driving <strong>Infrastructure as Code</strong> adoption with Terraform across multi-team environments.</p>
+        <p>I've led migrations from <strong>ECS to EKS</strong>, built full observability stacks with Prometheus, Grafana, Loki & Mimir, and set up end-to-end GitOps workflows with ArgoCD and GitHub Actions.</p>
+        <p>When I'm not pushing infrastructure improvements, I'm into <strong>VFX, 3D Animation,</strong> and exploring motion graphics.</p>
+        <div class="about-stats">
+          <div class="stat"><span class="stat-num"><span class="counter" data-target="4">0</span>+</span><span class="stat-label">Years Exp</span></div>
+          <div class="stat"><span class="stat-num"><span class="counter" data-target="3">0</span></span><span class="stat-label">Certifications</span></div>
+          <div class="stat"><span class="stat-num">L4</span><span class="stat-label">Lead Level</span></div>
+        </div>
+        <div class="hero-btns" style="margin-top:2rem">
+          <a href="experience.html" class="btn btn-primary magnetic page-link">View Experience</a>
+          <a href="contact.html" class="btn btn-outline magnetic page-link">Get In Touch</a>
+        </div>
+      </div>
+      <div class="about-card gsap-up" style="--delay:.2s">
+        <div class="terminal-card" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.12">
+          <div class="terminal-header">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="terminal-title">lakshya@devops ~ whoami</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line"><span class="t-key">name</span><span class="t-op">:</span><span class="t-val">"Lakshya Chhajed"</span></div>
+            <div class="t-line"><span class="t-key">role</span><span class="t-op">:</span><span class="t-val">"DevOps Lead Engineer"</span></div>
+            <div class="t-line"><span class="t-key">company</span><span class="t-op">:</span><span class="t-val">"IAMOPS"</span></div>
+            <div class="t-line"><span class="t-key">level</span><span class="t-op">:</span><span class="t-val">"L4 Lead Engineer"</span></div>
+            <div class="t-line"><span class="t-key">exp</span><span class="t-op">:</span><span class="t-val">"4+ years Cloud &amp; DevOps"</span></div>
+            <div class="t-line"><span class="t-key">clouds</span><span class="t-op">:</span><span class="t-val">["AWS", "GCP"]</span></div>
+            <div class="t-line"><span class="t-key">iac</span><span class="t-op">:</span><span class="t-val">"Terraform"</span></div>
+            <div class="t-line"><span class="t-key">linkedin</span><span class="t-op">:</span><a class="t-link" href="https://www.linkedin.com/in/lakshya-chhajed" target="_blank"><span class="t-val">in/lakshya-chhajed ↗</span></a></div>
+            <div class="t-line"><span class="t-key">status</span><span class="t-op">:</span><span class="t-val t-green">"open to opportunities"</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title gsap-title"><span class="section-num">01.</span> Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">☁️</div><h3>Cloud Platforms</h3><div class="skill-tags"><span>AWS</span><span>GCP</span></div><div class="skill-services"><p>EC2 · ECS · EKS · RDS · S3 · Lambda · CloudFront · WAF · Route53 · ALB · GKE · Cloud DNS</p></div></div>
+      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">🐳</div><h3>Containers & Orchestration</h3><div class="skill-tags"><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>EKS</span><span>GKE</span></div><div class="skill-services"><p>Cluster Autoscaler · Karpenter · ArgoCD · GitOps · Docker Compose · ECR</p></div></div>
+      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">🔧</div><h3>Infrastructure as Code</h3><div class="skill-tags"><span>Terraform</span></div><div class="skill-services"><p>Modular configs · Environment isolation · Remote state · Workspaces · AWS & GCP</p></div></div>
+      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">⚙️</div><h3>CI/CD & Automation</h3><div class="skill-tags"><span>GitHub Actions</span><span>Jenkins</span><span>ArgoCD</span></div><div class="skill-services"><p>Blue-green · On-demand envs · PR automation · Zero-downtime pipelines</p></div></div>
+      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">📊</div><h3>Monitoring & Observability</h3><div class="skill-tags"><span>Grafana</span><span>Prometheus</span><span>Loki</span><span>Mimir</span></div><div class="skill-services"><p>Promtail · OTel Collector · Custom dashboards · Alerting</p></div></div>
+      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">💻</div><h3>Scripting & Languages</h3><div class="skill-tags"><span>Python</span><span>Bash</span><span>YAML</span></div><div class="skill-services"><p>Automation scripts · Lambda functions · CLI tooling · Workflow orchestration</p></div></div>
+      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">🔒</div><h3>Security & Compliance</h3><div class="skill-tags"><span>AWS WAF</span><span>Shield</span><span>Vanta</span></div><div class="skill-services"><p>Inspector · Security Hub · VPN access control · Google SSO + Cognito</p></div></div>
+      <div class="skill-category glass-card gsap-skill" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1"><div class="skill-icon">🐧</div><h3>Linux & Networking</h3><div class="skill-tags"><span>Linux Admin</span><span>Networking</span></div><div class="skill-services"><p>VPC design · Subnetting · Security groups · NAT · DNS · Service Discovery</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title gsap-title"><span class="section-num">02.</span> Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card glass-card gsap-up" data-tilt data-tilt-max="6"><div class="edu-icon">🎓</div><div class="edu-info"><h3>Bachelor of Technology — Information Technology</h3><p class="edu-school">Uka Tarsadia University</p><p class="edu-location">Bardoli, India</p><div class="edu-meta"><span class="edu-year">2018 — 2022</span><span class="edu-score">CGPA: <strong>9.04 / 10</strong></span></div></div></div>
+      <div class="edu-card glass-card gsap-up" data-tilt data-tilt-max="6" style="--delay:.15s"><div class="edu-icon">📚</div><div class="edu-info"><h3>Higher Secondary — Science</h3><p class="edu-school">St. Xavier's High School</p><p class="edu-location">Surat, India</p><div class="edu-meta"><span class="edu-year">2016 — 2018</span><span class="edu-score">Score: <strong>84%</strong></span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Designed & Built by <strong>Lakshya Chhajed</strong></p>
+    <p class="footer-sub">DevOps Lead Engineer · Surat, India · 2026</p>
+  </div>
+</footer>
+<a href="#" class="back-to-top" id="backToTop">↑</a>
+
+<!-- TERMINAL -->
+<div id="termOverlay" class="term-overlay"><div class="term-window"><div class="term-win-header"><div class="term-win-dots"><button class="twdot red" id="termClose"></button><span class="twdot yellow"></span><span class="twdot green"></span></div><span class="term-win-title">lakshya@portfolio:~$</span><span class="term-win-hint">type <kbd>help</kbd></span></div><div class="term-win-body" id="termBody"></div><div class="term-win-input-row"><span class="term-prompt-label">lakshya@portfolio:~$&nbsp;</span><input type="text" id="termInput" class="term-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="type a command..."/></div><div class="term-suggestions" id="termSuggestions"></div></div></div>
+<button class="term-fab" id="termFab" title="Open terminal"><span class="term-fab-icon">⌨</span><span class="term-fab-label">Terminal</span><span class="term-fab-ping"></span></button>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
