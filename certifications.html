@@ -50,34 +50,77 @@
 <section class="section">
   <div class="container">
     <h2 class="section-title gsap-title"><span class="section-num">01.</span> Certifications</h2>
-    <div class="certs-grid">
-      <div class="cert-card glass-card gsap-cert" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
-        <div class="cert-logo aws-logo">AWS</div>
-        <div class="cert-info">
-          <h3>AWS Certified DevOps Engineer</h3>
-          <p class="cert-level">Professional</p>
-          <p class="cert-issuer">Amazon Web Services</p>
+    <div class="certs-grid-v2">
+
+      <!-- AWS DevOps Pro -->
+      <div class="cert-card-v2 glass-card gsap-cert" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.12">
+        <div class="cert-card-top">
+          <div class="cert-badge-icon aws-glow">
+            <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-family:monospace;font-weight:800;color:#FF9900;font-size:.9rem\'>AWS</span>'">
+          </div>
+          <span class="cert-level-pill pro">PROFESSIONAL</span>
         </div>
-        <div class="cert-badge pro">PRO</div>
-      </div>
-      <div class="cert-card glass-card gsap-cert" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
-        <div class="cert-logo aws-logo">AWS</div>
-        <div class="cert-info">
-          <h3>AWS Certified Solutions Architect</h3>
-          <p class="cert-level">Associate</p>
-          <p class="cert-issuer">Amazon Web Services</p>
+        <h3 class="cert-title">AWS Certified DevOps Engineer</h3>
+        <p class="cert-org-line">
+          <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="" width="14" height="14" onerror="this.remove()">
+          Amazon Web Services
+        </p>
+        <p class="cert-meaning">Validates expertise in provisioning, operating & managing distributed application systems. Covers continuous delivery, monitoring, policies, security automation & high availability on AWS.</p>
+        <div class="cert-skills">
+          <span>CI/CD Pipelines</span><span>CloudFormation</span><span>Monitoring</span><span>Security Automation</span><span>High Availability</span>
         </div>
-        <div class="cert-badge assoc">SAA</div>
-      </div>
-      <div class="cert-card glass-card gsap-cert" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
-        <div class="cert-logo tf-logo">TF</div>
-        <div class="cert-info">
-          <h3>HashiCorp Certified: Terraform Associate</h3>
-          <p class="cert-level">003</p>
-          <p class="cert-issuer">HashiCorp</p>
+        <div class="cert-footer">
+          <span class="cert-id">DOP-C02</span>
+          <span class="cert-verified">✓ Active</span>
         </div>
-        <div class="cert-badge tf">003</div>
       </div>
+
+      <!-- AWS SAA -->
+      <div class="cert-card-v2 glass-card gsap-cert" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.12">
+        <div class="cert-card-top">
+          <div class="cert-badge-icon aws-glow">
+            <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-family:monospace;font-weight:800;color:#FF9900;font-size:.9rem\'>AWS</span>'">
+          </div>
+          <span class="cert-level-pill assoc">ASSOCIATE</span>
+        </div>
+        <h3 class="cert-title">AWS Certified Solutions Architect</h3>
+        <p class="cert-org-line">
+          <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="" width="14" height="14" onerror="this.remove()">
+          Amazon Web Services
+        </p>
+        <p class="cert-meaning">Demonstrates ability to design and deploy scalable, highly available and fault-tolerant systems on AWS. Covers compute, storage, databases, networking and well-architected framework principles.</p>
+        <div class="cert-skills">
+          <span>Multi-tier Arch</span><span>VPC Design</span><span>Auto Scaling</span><span>S3 & RDS</span><span>Cost Optimization</span>
+        </div>
+        <div class="cert-footer">
+          <span class="cert-id">SAA-C03</span>
+          <span class="cert-verified">✓ Active</span>
+        </div>
+      </div>
+
+      <!-- Terraform -->
+      <div class="cert-card-v2 glass-card gsap-cert" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.12">
+        <div class="cert-card-top">
+          <div class="cert-badge-icon tf-glow">
+            <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-family:monospace;font-weight:800;color:#7B42BC;font-size:.9rem\'>TF</span>'">
+          </div>
+          <span class="cert-level-pill tf">ASSOCIATE</span>
+        </div>
+        <h3 class="cert-title">HashiCorp Certified: Terraform Associate</h3>
+        <p class="cert-org-line">
+          <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="" width="14" height="14" onerror="this.remove()">
+          HashiCorp
+        </p>
+        <p class="cert-meaning">Validates understanding of infrastructure as code concepts and proficiency with Terraform CLI. Covers state management, modules, workspaces, providers, remote backends and collaboration workflows.</p>
+        <div class="cert-skills">
+          <span>IaC Concepts</span><span>Remote State</span><span>Modules</span><span>Workspaces</span><span>Multi-cloud</span>
+        </div>
+        <div class="cert-footer">
+          <span class="cert-id">003</span>
+          <span class="cert-verified">✓ Active</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>

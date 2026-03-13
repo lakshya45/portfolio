@@ -4,20 +4,20 @@
 
 /* ─── TOOL DATA ──────────────────────────────────────────────── */
 const TOOLS=[
-  {name:'AWS',      hex:'#FF9900',slug:'amazonaws/FF9900',     abbr:'AWS'},
-  {name:'Docker',   hex:'#2496ED',slug:'docker/2496ED',        abbr:'DO'},
-  {name:'K8s',      hex:'#326CE5',slug:'kubernetes/326CE5',    abbr:'K8s'},
-  {name:'Terraform',hex:'#7B42BC',slug:'terraform/FFFFFF',     abbr:'TF'},
-  {name:'GCP',      hex:'#4285F4',slug:'googlecloud/4285F4',   abbr:'GCP'},
-  {name:'GitHub',   hex:'#8B949E',slug:'github/FFFFFF',        abbr:'GH'},
-  {name:'Helm',     hex:'#277A9F',slug:'helm/277A9F',          abbr:'HLM'},
-  {name:'Grafana',  hex:'#F46800',slug:'grafana/F46800',       abbr:'GRF'},
-  {name:'Prometheus',hex:'#E6522C',slug:'prometheus/E6522C',   abbr:'PRM'},
-  {name:'ArgoCD',   hex:'#EF7B4D',slug:'argo/EF7B4D',         abbr:'ARG'},
-  {name:'Jenkins',  hex:'#D24939',slug:'jenkins/D24939',       abbr:'JNK'},
-  {name:'Python',   hex:'#3776AB',slug:'python/3776AB',        abbr:'PY'},
-  {name:'Linux',    hex:'#FCC624',slug:'linux/000000',         abbr:'NIX'},
-  {name:'Loki',     hex:'#F5A623',slug:'grafana/F5A623',       abbr:'LKI'},
+  {name:'AWS',       hex:'#FF9900',slug:'amazonaws/FF9900',   abbr:'AWS', cat:'Cloud Platform',   desc:'Primary cloud — EC2, ECS, EKS, Lambda, S3, CloudFront, WAF & more in daily prod use.'},
+  {name:'Docker',    hex:'#2496ED',slug:'docker/2496ED',      abbr:'DO',  cat:'Containers',       desc:'Container runtime for building, shipping & running apps in isolated environments.'},
+  {name:'K8s',       hex:'#326CE5',slug:'kubernetes/326CE5',  abbr:'K8s', cat:'Orchestration',    desc:'Production container orchestration managing EKS & GKE clusters at scale.'},
+  {name:'Terraform', hex:'#7B42BC',slug:'terraform/FFFFFF',   abbr:'TF',  cat:'IaC',              desc:'HashiCorp Terraform for modular multi-cloud infra provisioning with remote state.'},
+  {name:'GCP',       hex:'#4285F4',slug:'googlecloud/4285F4', abbr:'GCP', cat:'Cloud Platform',   desc:'Google Cloud — GKE workloads, Cloud DNS, multi-cloud architecture & cost optimization.'},
+  {name:'GitHub',    hex:'#8B949E',slug:'github/FFFFFF',      abbr:'GH',  cat:'Source Control',   desc:'GitHub & Actions — GitOps pipelines, PR automation, OIDC-based deployments.'},
+  {name:'Helm',      hex:'#277A9F',slug:'helm/277A9F',        abbr:'HLM', cat:'K8s Tooling',      desc:'Charts for packaging K8s apps, managing release lifecycle across all environments.'},
+  {name:'Grafana',   hex:'#F46800',slug:'grafana/F46800',     abbr:'GRF', cat:'Observability',    desc:'Real-time dashboards, alerting & visualization for all infra and application metrics.'},
+  {name:'Prometheus',hex:'#E6522C',slug:'prometheus/E6522C',  abbr:'PRM', cat:'Monitoring',       desc:'Metrics scraping, PromQL queries, recording rules & alertmanager for Kubernetes.'},
+  {name:'ArgoCD',    hex:'#EF7B4D',slug:'argo/EF7B4D',       abbr:'ARG', cat:'GitOps',           desc:'Declarative GitOps CD — syncing K8s state to Git with automated rollbacks.'},
+  {name:'Jenkins',   hex:'#D24939',slug:'jenkins/D24939',     abbr:'JNK', cat:'CI/CD',            desc:'Blue-green deployments, parameterized pipelines & legacy CI/CD automation.'},
+  {name:'Python',    hex:'#3776AB',slug:'python/3776AB',      abbr:'PY',  cat:'Scripting',        desc:'Automation scripts, Lambda functions, cost-analysis tooling & CLI utilities.'},
+  {name:'Linux',     hex:'#FCC624',slug:'linux/000000',       abbr:'NIX', cat:'OS & Networking',  desc:'VPC design, subnetting, security groups, NAT gateways, DNS & system hardening.'},
+  {name:'Loki',      hex:'#F5A623',slug:'grafana/F5A623',     abbr:'LKI', cat:'Log Aggregation',  desc:'Grafana Loki + Promtail for log shipping, indexing & querying at Kubernetes scale.'},
 ];
 
 function hexToRgb(hex){
@@ -29,21 +29,44 @@ function hexToRgb(hex){
   const overlay=document.getElementById('ptOverlay');
   if(!overlay||typeof gsap==='undefined') return;
 
-  /* Enter: circle shrinks away from center to reveal page */
+  /* Enter: circle shrinks from center revealing the new page */
   gsap.set(overlay,{clipPath:'circle(150% at 50% 50%)'});
-  gsap.to(overlay,{clipPath:'circle(0% at 50% 50%)',duration:.7,ease:'power4.inOut',delay:.05});
+  gsap.to(overlay,{clipPath:'circle(0% at 50% 50%)',duration:.75,ease:'power4.inOut',delay:.05});
 
-  /* Exit: intercept page-link clicks — circle expands from click point */
+  /* Exit: nav label flies to center then circle expands from click origin */
   document.addEventListener('click',e=>{
     const link=e.target.closest('a.page-link');
     if(!link) return;
     const href=link.getAttribute('href');
     if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')) return;
     e.preventDefault();
-    const cx=Math.round((e.clientX/window.innerWidth)*100);
-    const cy=Math.round((e.clientY/window.innerHeight)*100);
-    gsap.set(overlay,{clipPath:`circle(0% at ${cx}% ${cy}%)`});
-    gsap.to(overlay,{clipPath:`circle(150% at ${cx}% ${cy}%)`,duration:.55,ease:'power4.inOut',onComplete:()=>{window.location.href=href;}});
+
+    const rect=link.getBoundingClientRect();
+    const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
+    const ww=window.innerWidth, wh=window.innerHeight;
+
+    /* Collapse other nav items */
+    document.querySelectorAll('.nav-links li').forEach(li=>{
+      if(!li.contains(link)) gsap.to(li,{opacity:0,y:-10,scale:.85,duration:.22,ease:'power2.in'});
+    });
+
+    /* Label flies from nav item to screen center and fades out large */
+    const lbl=document.createElement('div');
+    lbl.className='pt-nav-label';
+    lbl.textContent=link.textContent.trim();
+    document.body.appendChild(lbl);
+    gsap.fromTo(lbl,
+      {x:cx,y:cy,scale:.5,opacity:1},
+      {x:ww/2,y:wh/2,scale:3,opacity:0,duration:.65,ease:'power3.inOut',onComplete:()=>lbl.remove()}
+    );
+
+    /* Gradient circle explodes from the nav item's position */
+    gsap.set(overlay,{clipPath:`circle(0px at ${cx}px ${cy}px)`});
+    gsap.to(overlay,{
+      clipPath:`circle(200vmax at ${cx}px ${cy}px)`,
+      duration:.55, delay:.22, ease:'power4.inOut',
+      onComplete:()=>{window.location.href=href;}
+    });
   });
 })();
 
@@ -74,28 +97,10 @@ document.querySelectorAll('.scramble').forEach(el=>{
   new IntersectionObserver(([e],o)=>{if(!e.isIntersecting)return;scramble(el,txt);o.disconnect();},{threshold:.5}).observe(el);
 });
 
-/* ─── FLOATING LOGO GRID + DEVOPS CITY ──────────────────────── */
+/* ─── FLOATING LOGO GRID ─────────────────────────────────────── */
 function buildLogoGrid(){
   const grid=document.getElementById('logoGrid');
-  const city=document.getElementById('devopsCity');
   if(!grid) return;
-
-  if(city){
-    const ct=[...TOOLS,...TOOLS.slice(0,5)];
-    ct.forEach((t,i)=>{
-      const rgb=hexToRgb(t.hex);
-      const bw=44+Math.floor(Math.random()*44);
-      const bh=55+Math.floor(Math.random()*110);
-      const b=document.createElement('div');
-      b.className='city-building';
-      b.style.cssText=`left:${((i/ct.length)*98).toFixed(1)}%;width:${bw}px;height:${bh}px;--brand-rgb:${rgb};animation-delay:-${(i*.38).toFixed(2)}s;animation-duration:${(5+Math.random()*3).toFixed(1)}s`;
-      const img=document.createElement('img');
-      img.src=`https://cdn.simpleicons.org/${t.slug}`;
-      img.className='city-logo'; img.alt='';
-      img.onerror=()=>{img.remove();const sp=document.createElement('span');sp.style.cssText=`font-family:monospace;font-size:.55rem;font-weight:800;color:rgba(${rgb},.35);padding-top:4px;`;sp.textContent=t.abbr;b.appendChild(sp);};
-      b.appendChild(img); city.appendChild(b);
-    });
-  }
 
   TOOLS.forEach((t,i)=>{
     const rgb=hexToRgb(t.hex);
@@ -104,13 +109,20 @@ function buildLogoGrid(){
     item.style.setProperty('--float-delay',`-${(i*.45).toFixed(2)}s`);
     item.style.setProperty('--float-dur',`${(3.2+(i%4)*.5).toFixed(1)}s`);
     item.style.setProperty('--brand-rgb',rgb);
+
     const badge=document.createElement('div'); badge.className='logo-badge';
     const img=document.createElement('img');
     img.src=`https://cdn.simpleicons.org/${t.slug}`; img.alt=t.name; img.crossOrigin='anonymous';
     img.onerror=()=>{img.remove();const fb=document.createElement('span');fb.className='logo-badge-fallback';fb.textContent=t.abbr;badge.appendChild(fb);};
     badge.appendChild(img);
+
     const label=document.createElement('div'); label.className='logo-float-label'; label.textContent=t.name;
-    item.appendChild(badge); item.appendChild(label); grid.appendChild(item);
+
+    const tip=document.createElement('div'); tip.className='logo-tooltip';
+    tip.innerHTML=`<span class="tooltip-cat">${t.cat}</span><span class="tooltip-name">${t.name}</span><span class="tooltip-desc">${t.desc}</span>`;
+
+    item.appendChild(badge); item.appendChild(label); item.appendChild(tip);
+    grid.appendChild(item);
     item.addEventListener('mouseenter',()=>badge.style.animationPlayState='paused');
     item.addEventListener('mouseleave',()=>badge.style.animationPlayState='');
   });
